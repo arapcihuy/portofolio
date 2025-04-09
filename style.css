@@ -175,6 +175,61 @@ nav ul li a:hover {
   text-decoration: underline; /* Tambahkan garis bawah saat hover */
 }
 
+/* Project Images - Updated for better control */
+.card img {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 15px;
+  display: block;
+}
+
+#latest-project .card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+#latest-project .card {
+  padding: 0 0 20px 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 450px;
+}
+
+#latest-project .card img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 15px;
+  display: block;
+  flex-shrink: 0;
+}
+
+#latest-project .card-content {
+  padding: 0 20px 10px;
+  flex-grow: 1;
+  text-align: left;
+}
+
+#latest-project .card-content h3 {
+  font-size: 1.4rem;
+  margin: 10px 0;
+}
+
+#latest-project .card-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-height: none; /* Allow text to expand */
+  overflow: auto; /* Add scrollbar if needed */
+  padding-right: 5px;
+}
+
 /* Footer */
 footer {
   text-align: center;
