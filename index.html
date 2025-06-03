@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Rasyid Achmad Fauzi - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -178,9 +180,93 @@
       background: linear-gradient(#3b82f6, #8b5cf6);
       border-radius: 10px;
     }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-nav a:hover {
+      color: #3b82f6;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .section {
+        padding: 4rem 1rem;
+      }
+
+      .hero-bg {
+        background-size: 200% 200%;
+      }
+
+      .card {
+        margin: 0.5rem;
+      }
+
+      .skill-bar {
+        width: 100%;
+      }
+
+      .timeline-item {
+        flex-direction: column;
+      }
+
+      .timeline-content {
+        width: 100%;
+        margin: 1rem 0;
+      }
+    }
+
+    /* iPhone specific adjustments */
+    @supports (-webkit-touch-callout: none) {
+      .section {
+        min-height: -webkit-fill-available;
+      }
+
+      .mobile-nav {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .nav {
+        padding-top: env(safe-area-inset-top);
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about" class="nav-item">About</a>
+    <a href="#skills" class="nav-item">Skills</a>
+    <a href="#projects" class="nav-item">Projects</a>
+    <a href="#education" class="nav-item">Education</a>
+    <a href="#contact" class="nav-item">Contact</a>
+  </div>
+
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 py-6 px-8 backdrop-blur-md bg-black/50">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -194,7 +280,7 @@
         <a href="#contact" class="nav-item text-white text-sm font-medium">Contact</a>
       </div>
       
-      <button class="md:hidden text-white">
+      <button class="md:hidden text-white" id="mobileMenuBtn">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
@@ -780,12 +866,21 @@
   </button>
 
   <script>
-    // Mobile menu toggle
-    document.querySelector('button').addEventListener('click', function() {
-      const nav = document.querySelector('nav .hidden');
-      if (nav) {
-        nav.classList.toggle('md:hidden');
-      }
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
     });
 
     // Back to top button
@@ -853,20 +948,20 @@
     });
 
     // Form submission
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-  const res = await fetch('http://localhost:3001/contact', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email, message })
-  });
-  const data = await res.json();
-  alert(data.message);
-  document.getElementById('contactForm').reset();
-});
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const res = await fetch('http://localhost:3001/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+      const data = await res.json();
+      alert(data.message);
+      document.getElementById('contactForm').reset();
+    });
   </script>
 </body>
 </html>
