@@ -884,7 +884,16 @@
         </div>
         
         <div class="animate-[slideUp_1.2s_ease]">
-          <form id="contactForm" class="card p-8 rounded-xl">
+          <form action="https://formsubmit.co/rasyidahmad180@gmail.com" method="POST" class="card p-8 rounded-xl">
+            <!-- Honeypot -->
+            <input type="text" name="_honey" style="display:none">
+            
+            <!-- Disable Captcha -->
+            <input type="hidden" name="_captcha" value="false">
+            
+            <!-- Success Page -->
+            <input type="hidden" name="_next" value="https://arapcihuy.github.io/portofolio/thanks.html">
+            
             <div class="mb-6">
               <label for="name" class="block text-gray-300 mb-2">Your Name</label>
               <input type="text" id="name" name="name" required
@@ -901,8 +910,9 @@
                 class="w-full p-3 rounded-lg bg-black/30 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"></textarea>
             </div>
             <button type="submit"
-            class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 rounded-lg hover:opacity-90 transition duration-300">
-            Send Message</button>
+              class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 rounded-lg hover:opacity-90 transition duration-300">
+              Send Message
+            </button>
           </form>
         </div>
       </div>
@@ -1040,7 +1050,9 @@
           timestamp: new Date().toISOString()
         };
 
-        const response = await fetch('/api/contact', {
+        console.log('Sending form data:', formData); // Debug log
+
+        const response = await fetch('http://localhost:3000/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1048,11 +1060,15 @@
           body: JSON.stringify(formData)
         });
 
+        console.log('Response status:', response.status); // Debug log
+
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Network response was not ok');
         }
 
         const data = await response.json();
+        console.log('Success response:', data); // Debug log
         
         // Show success message
         alert('Thank you for your message! I will get back to you soon.');
@@ -1061,7 +1077,7 @@
         document.getElementById('contactForm').reset();
         
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error details:', error); // Detailed error logging
         alert('Sorry, there was an error sending your message. Please try again later.');
       }
     });
