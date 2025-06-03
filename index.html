@@ -253,6 +253,10 @@
         background-attachment: scroll !important;
       }
 
+      #projects {
+        background-image: none !important;
+      }
+
       #projects .card {
         height: auto !important;
       }
@@ -277,6 +281,16 @@
 
       .text-5xl {
         font-size: 2.5rem !important;
+      }
+    }
+
+    /* Desktop styles */
+    @media (min-width: 769px) {
+      #projects {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
     }
 
@@ -577,7 +591,7 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="section bg-black">
+  <section id="projects" class="section bg-black parallax" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
     <div class="absolute inset-0 bg-black/70"></div>
     <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="flex flex-col items-center mb-20 animate-[fadeIn_1s_ease]">
