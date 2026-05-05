@@ -10,239 +10,126 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    html { 
-      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-      scroll-behavior: smooth;
-    }
-    body {
-      background-color: #000;
-      color: #fff;
-      line-height: 1.6;
-    }
-    .fade-in { 
-      animation: fadeIn 1.2s ease;
-    }
-    @keyframes fadeIn { 
-      from { opacity: 0; transform: translateY(40px); } 
-      to { opacity: 1; transform: translateY(0); } 
-    }
-    .tag {
-      background: #1a1a1a;
-      color: #fff;
-      border-radius: 0.5rem;
-      font-size: 0.875rem;
-      padding: 0.25rem 0.75rem;
-      margin: 0.2rem;
-      display: inline-block;
-      border: 1px solid #333;
-      transition: all 0.2s;
-    }
-    .tag:hover {
-      border-color: #3b82f6;
-      color: #3b82f6;
-    }
-    .project-card {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 1rem;
-      transition: all 0.3s ease;
-      overflow: hidden;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: #3b82f6;
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
-    }
-    .project-card video {
-      transition: transform 0.3s ease;
-    }
-    .project-card:hover video {
-      transform: scale(1.05);
-    }
-    .nav-bar {
-      background: rgba(26, 26, 26, 0.8);
-      backdrop-filter: blur(8px);
-      border: 1px solid #333;
-      transition: all 0.3s ease;
-    }
-    .nav-bar:hover {
-      border-color: #3b82f6;
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
-    }
-    .nav-icon {
-      transition: all 0.2s;
-      color: #9ca3af;
-    }
-    .nav-icon:hover {
-      transform: scale(1.1);
-      color: #3b82f6;
-    }
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: #fff;
-      letter-spacing: -0.025em;
-    }
-    .section-subtitle {
-      color: #9ca3af;
-      font-size: 1.125rem;
-      margin-bottom: 2rem;
-      max-width: 42rem;
-    }
-    .timeline-item {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      transition: all 0.3s ease;
-    }
-    .timeline-item:hover {
-      border-color: #3b82f6;
-      transform: translateX(4px);
-    }
-    .timeline-item img {
-      transition: transform 0.3s ease;
-    }
-    .timeline-item:hover img {
-      transform: scale(1.1);
-    }
-    .socials a {
-      color: #9ca3af;
-      transition: all 0.2s;
-    }
-    .socials a:hover {
-      color: #3b82f6;
-      transform: translateY(-2px);
-    }
-    .link {
-      color: #3b82f6;
-      transition: all 0.2s;
-    }
-    .link:hover {
-      color: #60a5fa;
-      text-decoration: underline;
-    }
+    html { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+    .fade-in { animation: fadeIn 1.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    .tooltip { position: absolute; left: 50%; bottom: 120%; transform: translateX(-50%); background: #222; color: #fff; padding: 4px 12px; border-radius: 6px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 100; box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10); }
+    .dark body { background-color: #000 !important; color: #fff !important; }
+    .dark .text-black, .dark .text-[#222] { color: #fff !important; }
+    .dark .bg-white { background-color: #18181b !important; }
+    .dark .border { border-color: #333 !important; }
+    .dark .shadow-xl { box-shadow: 0 8px 32px 0 rgba(0,0,0,0.7) !important; }
+    .dark .hover\:bg-gray-100:hover { background-color: #23272f !important; }
+    .dark .rounded-full.bg-white { background-color: #23272f !important; }
+    .dark .bg-gray-100 { background-color: #23272f !important; }
+    .dark .hover\:bg-gray-100:hover { background-color: #23272f !important; }
+    .dark .bg-white\/80 { background-color: rgba(24,24,27,0.8) !important; }
+    .dark .bg-white\/60 { background-color: rgba(24,24,27,0.6) !important; }
   </style>
 </head>
-<body class="min-h-screen">
-  <main class="max-w-3xl mx-auto px-4 pt-20 pb-8 fade-in">
+<body class="min-h-screen w-full bg-white text-black dark:text-white">
+  <main class="max-w-3xl mx-auto px-4 pt-16 pb-8 fade-in">
     <!-- Hero -->
-    <section class="text-center mb-24">
+    <section class="text-center mb-16">
       <div class="flex flex-col items-center justify-center">
-        <div class="w-28 h-28 rounded-full overflow-hidden flex items-center justify-center border-2 border-gray-800 mb-8 transition-transform duration-300 hover:scale-110">
+        <div class="w-40 h-40 rounded-full overflow-hidden flex items-center justify-center border-4 border-white shadow-lg mb-6 transition-transform duration-300 hover:scale-110">
           <img src="images/DSC01453 (1).jpg" alt="Rasyid Achmad Fauzi" class="object-cover w-full h-full" />
         </div>
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Hi, I'm Rasyid <span class="inline-block">👋</span></h1>
-        <div class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl">Frontend Developer - Web & Mobile Developer. I love building things and helping people.</div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">Hi, I'm Rasyid <span class="inline-block">👋</span></h1>
+        <div class="text-lg md:text-xl text-gray-400 dark:text-gray-300 mb-4">Frontend Developer - Web & Mobile Developer. I love building things and helping people.</div>
       </div>
     </section>
-
     <!-- About -->
-    <section class="mb-24">
-      <h2 class="section-title">About</h2>
-      <p class="text-gray-400 leading-relaxed max-w-3xl">Saya adalah seorang pengembang web dan mobile yang bersemangat dalam menciptakan solusi digital yang inovatif. Dengan pengalaman dalam berbagai teknologi seperti React, Flutter, dan Node.js, saya berdedikasi untuk menghasilkan produk yang tidak hanya fungsional tetapi juga memberikan pengalaman pengguna yang luar biasa.</p>
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-2">About</h2>
+      <p class="text-gray-400 dark:text-gray-300">Saya adalah seorang pengembang web dan mobile yang bersemangat dalam menciptakan solusi digital yang inovatif. Dengan pengalaman dalam berbagai teknologi seperti React, Flutter, dan Node.js, saya berdedikasi untuk menghasilkan produk yang tidak hanya fungsional tetapi juga memberikan pengalaman pengguna yang luar biasa.</p>
     </section>
-
     <!-- Experience -->
-    <section class="mb-24">
-      <h2 class="section-title">Work/Project Experience</h2>
-      <div class="space-y-4">
-        <div class="timeline-item">
-          <div class="flex items-start gap-4">
-            <img src="logo1.png" alt="Logo Project 1" class="w-12 h-12 rounded-full object-contain bg-gray-900" />
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <div>
-                  <div class="font-bold text-lg mb-1">Jarialjabar Web <span class="tag">Project</span></div>
-                  <div class="text-gray-400 text-sm">Web Development - HTML, CSS, JavaScript</div>
-                </div>
-                <div class="text-gray-500 text-sm">2023 - Sekarang</div>
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Work/Project Experience</h2>
+      <div class="space-y-6">
+        <div class="flex items-center gap-4 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-5">
+          <img src="logo1.png" alt="Logo Project 1" class="w-12 h-12 rounded-full object-contain bg-white dark:bg-[#23272f]" />
+          <div class="flex-1">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <div class="font-bold text-lg text-black dark:text-white mb-1">Jarialjabar Web <span class="tag ml-2">Project</span></div>
+                <div class="text-gray-500 dark:text-gray-400 text-sm mb-1">Web Development - HTML, CSS, JavaScript</div>
+                <div class="text-gray-400 dark:text-gray-300 text-xs mb-1">2023 - Sekarang</div>
+                <div class="text-gray-700 dark:text-gray-300 text-sm">Website resmi untuk organisasi jurnalistik di SMAN 1 Cibinong.</div>
               </div>
-              <p class="text-gray-400 text-sm">Website resmi untuk organisasi jurnalistik di SMAN 1 Cibinong.</p>
             </div>
           </div>
         </div>
-
-        <div class="timeline-item">
-          <div class="flex items-start gap-4">
-            <img src="logo2.png" alt="Logo Project 2" class="w-12 h-12 rounded-full object-contain bg-gray-900" />
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <div>
-                  <div class="font-bold text-lg mb-1">KINCLONG <span class="tag">Project</span></div>
-                  <div class="text-gray-400 text-sm">Mobile App - Flutter, Firebase, Dart</div>
-                </div>
-                <div class="text-gray-500 text-sm">2022 - 2023</div>
+        <div class="flex items-center gap-4 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-5">
+          <img src="logo2.png" alt="Logo Project 2" class="w-12 h-12 rounded-full object-contain bg-white dark:bg-[#23272f]" />
+          <div class="flex-1">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <div class="font-bold text-lg text-black dark:text-white mb-1">KINCLONG <span class="tag ml-2">Project</span></div>
+                <div class="text-gray-500 dark:text-gray-400 text-sm mb-1">Mobile App - Flutter, Firebase, Dart</div>
+                <div class="text-gray-400 dark:text-gray-300 text-xs mb-1">2022 - 2023</div>
+                <div class="text-gray-700 dark:text-gray-300 text-sm">Aplikasi mobile untuk layanan cuci sepatu.</div>
               </div>
-              <p class="text-gray-400 text-sm">Aplikasi mobile untuk layanan cuci sepatu.</p>
             </div>
           </div>
         </div>
-
-        <div class="timeline-item">
-          <div class="flex items-start gap-4">
-            <img src="logo3.png" alt="Logo Project 3" class="w-12 h-12 rounded-full object-contain bg-gray-900" />
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <div>
-                  <div class="font-bold text-lg mb-1">Quondam <span class="tag">Project</span></div>
-                  <div class="text-gray-400 text-sm">Web Portfolio - React, Tailwind CSS, JavaScript</div>
-                </div>
-                <div class="text-gray-500 text-sm">2021 - 2022</div>
+        <div class="flex items-center gap-4 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-5">
+          <img src="logo3.png" alt="Logo Project 3" class="w-12 h-12 rounded-full object-contain bg-white dark:bg-[#23272f]" />
+          <div class="flex-1">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <div class="font-bold text-lg text-black dark:text-white mb-1">Quondam <span class="tag ml-2">Project</span></div>
+                <div class="text-gray-500 dark:text-gray-400 text-sm mb-1">Web Portfolio - React, Tailwind CSS, JavaScript</div>
+                <div class="text-gray-400 dark:text-gray-300 text-xs mb-1">2021 - 2022</div>
+                <div class="text-gray-700 dark:text-gray-300 text-sm">Website portofolio untuk fotografer.</div>
               </div>
-              <p class="text-gray-400 text-sm">Website portofolio untuk fotografer.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Education -->
-    <section class="mb-24">
-      <h2 class="section-title">Education</h2>
-      <div class="space-y-4">
-        <div class="timeline-item">
-          <div class="flex items-start gap-4">
-            <img src="1279831.png" alt="UII Logo" class="w-12 h-12 rounded-full object-contain bg-gray-900" />
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <div>
-                  <div class="flex items-center gap-2">
-                    <div class="font-bold text-lg">Universitas Islam Indonesia</div>
-                    <a href="https://www.uii.ac.id/" target="_blank" class="text-blue-500 hover:text-blue-400">
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                  </div>
-                  <div class="text-gray-400 text-sm">Bachelor's Degree of Informatics Engineering</div>
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Education</h2>
+      <div class="space-y-6">
+        <div class="flex items-center gap-4 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-5">
+          <img src="1279831.png" alt="UII Logo" class="w-12 h-12 rounded-full object-contain bg-white dark:bg-[#23272f]" />
+          <div class="flex-1">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <div class="flex items-center gap-1 group">
+                  <b class="text-black dark:text-white">Universitas Islam Indonesia</b>
+                  <a href="https://www.uii.ac.id/" target="_blank" rel="noopener noreferrer" class="inline-block align-middle text-black dark:text-white hover:text-blue-500 transition-colors opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-1" aria-label="Go to UII website">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 10h10M10 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
                 </div>
-                <div class="text-gray-500 text-sm">2021 - Current</div>
+                <span class="text-gray-700 dark:text-gray-300">Bachelor's Degree of Informatics Engineering</span>
               </div>
+              <div class="ml-auto text-gray-500 dark:text-gray-400 text-sm whitespace-nowrap">2021 - Current</div>
             </div>
           </div>
         </div>
-
-        <div class="timeline-item">
-          <div class="flex items-start gap-4">
-            <img src="download.png" alt="Al Azhar Logo" class="w-12 h-12 rounded-full object-contain bg-gray-900" />
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <div>
-                  <div class="font-bold text-lg mb-1">SMA Islam - Al Azhar 19 Jakarta</div>
-                  <div class="text-gray-400 text-sm">Ilmu Pengetahuan Alam</div>
-                </div>
-                <div class="text-gray-500 text-sm">2018 - 2021</div>
+        <div class="flex items-center gap-4 bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-5">
+          <img src="download.png" alt="Al Azhar Logo" class="w-16 h-16 rounded-full object-contain bg-white dark:bg-[#23272f]" />
+          <div class="flex-1">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <b class="text-black dark:text-white">SMA Islam - Al Azhar 19 Jakarta</b>
+                <span class="tag ml-2">IPA</span>
+                <span class="text-gray-700 dark:text-gray-300 block mt-1">Ilmu Pengetahuan Alam</span>
               </div>
+              <div class="ml-auto text-gray-500 dark:text-gray-400 text-sm whitespace-nowrap">2018 - 2021</div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Skills -->
-    <section class="mb-24">
-      <h2 class="section-title">Skills</h2>
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Skills</h2>
       <div class="flex flex-wrap gap-2">
         <span class="tag">React</span>
         <span class="tag">Flutter</span>
@@ -259,135 +146,148 @@
         <span class="tag">Time Management</span>
       </div>
     </section>
-
     <!-- Project Gallery -->
-    <section class="mb-24">
-      <h2 class="section-title">Check out my latest work</h2>
-      <div class="text-gray-400 mb-8 max-w-2xl">Berikut beberapa project favorit saya.</div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="project-card p-6">
-          <div class="overflow-hidden rounded-lg mb-4">
-            <video src="videos/project1.mp4" class="w-full h-48 object-cover" muted loop playsinline autoplay></video>
-          </div>
-          <div class="font-bold text-lg mb-2">Jarialjabar Web (WEB)</div>
-          <div class="text-gray-400 text-sm mb-2">2023 - Sekarang</div>
-          <p class="text-gray-400 text-sm mb-4">Website resmi untuk organisasi jurnalistik di SMAN 1 Cibinong.</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Check out my latest work</h2>
+      <div class="text-gray-400 dark:text-gray-300 mb-6">Berikut beberapa project favorit saya.</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="project-card bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 text-black dark:text-white">
+          <video src="videos/project1.mp4" class="project-img mb-4" muted loop playsinline autoplay style="width:100%;height:220px;object-fit:cover;border-radius:1rem;"></video>
+          <div class="font-bold mb-1 text-black dark:text-white">Jarialjabar Web (WEB)</div>
+          <div class="text-gray-500 dark:text-gray-400 text-sm mb-2">2023 - Sekarang</div>
+          <div class="text-gray-700 dark:text-gray-300 mb-2">Website resmi untuk organisasi jurnalistik di SMAN 1 Cibinong.</div>
+          <div class="project-tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
           </div>
         </div>
-
-        <div class="project-card p-6">
-          <div class="overflow-hidden rounded-lg mb-4">
-            <video src="videos/project2.mp4" class="w-full h-48 object-cover" muted loop playsinline autoplay></video>
-          </div>
-          <div class="font-bold text-lg mb-2">KINCLONG (Mobile)</div>
-          <div class="text-gray-400 text-sm mb-2">2022 - 2023</div>
-          <p class="text-gray-400 text-sm mb-4">Aplikasi mobile untuk layanan cuci sepatu.</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">Flutter</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">Dart</span>
+        <div class="project-card bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 text-black dark:text-white">
+          <video src="videos/project2.mp4" class="project-img mb-4" muted loop playsinline autoplay style="width:100%;height:220px;object-fit:cover;border-radius:1rem;"></video>
+          <div class="font-bold mb-1 text-black dark:text-white">KINCLONG (Mobile)</div>
+          <div class="text-gray-500 dark:text-gray-400 text-sm mb-2">2022 - 2023</div>
+          <div class="text-gray-700 dark:text-gray-300 mb-2">Aplikasi mobile untuk layanan cuci sepatu.</div>
+          <div class="project-tags">
+            <span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">Dart</span>
           </div>
         </div>
-
-        <div class="project-card p-6">
-          <div class="overflow-hidden rounded-lg mb-4">
-            <video src="videos/project3.mp4" class="w-full h-48 object-cover" muted loop playsinline autoplay></video>
-          </div>
-          <div class="font-bold text-lg mb-2">Quondam (Portfolio)</div>
-          <div class="text-gray-400 text-sm mb-2">2021 - 2022</div>
-          <p class="text-gray-400 text-sm mb-4">Website portofolio untuk fotografer.</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="tag">React</span>
-            <span class="tag">Tailwind CSS</span>
-            <span class="tag">JavaScript</span>
+        <div class="project-card bg-white dark:bg-[#18181b] border border-gray-200 dark:border-gray-700 text-black dark:text-white">
+          <video src="videos/project3.mp4" class="project-img mb-4" muted loop playsinline autoplay style="width:100%;height:220px;object-fit:cover;border-radius:1rem;"></video>
+          <div class="font-bold mb-1 text-black dark:text-white">Quondam (Portfolio)</div>
+          <div class="text-gray-500 dark:text-gray-400 text-sm mb-2">2021 - 2022</div>
+          <div class="text-gray-700 dark:text-gray-300 mb-2">Website portofolio untuk fotografer.</div>
+          <div class="project-tags">
+            <span class="tag">React</span><span class="tag">Tailwind CSS</span><span class="tag">JavaScript</span>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Contact -->
-    <section class="mb-24 text-center">
-      <h2 class="section-title">Get in Touch</h2>
-      <div class="text-gray-400 mb-8 max-w-2xl mx-auto">Ingin ngobrol? Kirim pesan ke email atau sosial media saya!</div>
-      <div class="flex justify-center gap-6 socials mb-8">
-        <a href="mailto:rasyidahmad180@gmail.com" title="Email" class="text-2xl"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.instagram.com/r.asyidahmad/" target="_blank" title="Instagram" class="text-2xl"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/rasyid-ahmad-840b8b250/" target="_blank" title="LinkedIn" class="text-2xl"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/arapcihuy" target="_blank" title="GitHub" class="text-2xl"><i class="fab fa-github"></i></a>
+    <section class="mb-12 text-center">
+      <h2 class="text-2xl font-bold mb-4">Get in Touch</h2>
+      <div class="text-gray-400 dark:text-gray-300 mb-4">Ingin ngobrol? Kirim pesan ke email atau sosial media saya!</div>
+      <div class="flex justify-center gap-4 socials mb-6">
+        <a href="mailto:rasyidahmad180@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.instagram.com/r.asyidahmad/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/rasyid-ahmad-840b8b250/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/arapcihuy" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
       </div>
-      <div class="text-gray-400">
-        <div class="mb-2">Email: <a href="mailto:rasyidahmad180@gmail.com" class="link">rasyidahmad180@gmail.com</a></div>
-        <div>Phone: <a href="tel:+6281387906930" class="link">+62 813 8790 6930</a></div>
-      </div>
+      <div class="text-gray-500 dark:text-gray-400 mb-2">Email: <a href="mailto:rasyidahmad180@gmail.com" class="underline">rasyidahmad180@gmail.com</a></div>
+      <div class="text-gray-500 dark:text-gray-400">Phone: <a href="tel:+6281387906930" class="underline">+62 813 8790 6930</a></div>
     </section>
-
-    <footer class="text-center text-gray-500 text-sm pt-8 border-t border-gray-800">© 2025 Rasyid Achmad Fauzi. All rights reserved.</footer>
+    <footer class="text-center text-gray-400 text-sm mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">© 2025 Rasyid Achmad Fauzi. All rights reserved.</footer>
   </main>
-
-  <!-- Floating Navigation Bar -->
-  <div class="fixed left-1/2 -translate-x-1/2 bottom-8 z-50">
-    <div class="nav-bar flex items-center px-6 py-3 rounded-full shadow-xl">
-      <a href="#" class="nav-icon text-xl mx-3"><i class="fas fa-home"></i></a>
-      <a href="https://instagram.com/" target="_blank" class="nav-icon text-xl mx-3"><i class="fab fa-instagram"></i></a>
-      <a href="https://github.com/" target="_blank" class="nav-icon text-xl mx-3"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/" target="_blank" class="nav-icon text-xl mx-3"><i class="fab fa-linkedin"></i></a>
-      <a href="https://x.com/" target="_blank" class="nav-icon text-xl mx-3">
-        <svg width="20" height="20" viewBox="0 0 1200 1227" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1199.97 0.5H1090.6L600.01 529.5L1090.6 1226.5H1199.97L709.38 529.5L1199.97 0.5ZM0.0299988 0.5H109.4L599.99 529.5L109.4 1226.5H0.0299988L490.62 529.5L0.0299988 0.5Z" fill="currentColor"/>
-        </svg>
-      </a>
-      <a href="mailto:rasyidahmad180@gmail.com" class="nav-icon text-xl mx-3"><i class="fas fa-envelope"></i></a>
-      <button class="theme-toggle-btn nav-icon text-xl mx-3" aria-label="Toggle Theme"><i class="fas fa-moon"></i></button>
+  <!-- Floating Social Bar tanpa garis pembatas, dengan efek hover membesar pada ikon -->
+  <div class="fixed left-1/2 -translate-x-1/2 bottom-8 z-50 animate-fade-in">
+    <div class="flex items-center px-6 py-2 rounded-full shadow-xl border bg-white dark:bg-[#18181b] border-gray-200 dark:border-gray-700">
+      <!-- Home -->
+      <div class="relative group">
+        <a href="#" class="text-black dark:text-white text-xl flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-[#23272f] hover:scale-125 scale-100 transition-transform duration-200">
+          <i class="fas fa-home"></i>
+        </a>
+        <span class="tooltip group-hover:opacity-100">Home</span>
+      </div>
+      <!-- Instagram -->
+      <div class="relative group">
+        <a href="https://instagram.com/" target="_blank" class="text-black dark:text-white text-xl flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-[#23272f] hover:scale-125 scale-100 transition-transform duration-200">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <span class="tooltip group-hover:opacity-100">Instagram</span>
+      </div>
+      <!-- GitHub (active example) -->
+      <div class="relative group">
+        <a href="https://github.com/" target="_blank" class="text-black dark:text-white text-xl flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-[#23272f] shadow hover:scale-125 scale-100 transition-transform duration-200">
+          <i class="fab fa-github"></i>
+        </a>
+        <span class="tooltip group-hover:opacity-100">GitHub</span>
+      </div>
+      <!-- LinkedIn -->
+      <div class="relative group">
+        <a href="https://linkedin.com/" target="_blank" class="text-black dark:text-white text-xl flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-[#23272f] hover:scale-125 scale-100 transition-transform duration-200">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <span class="tooltip group-hover:opacity-100">LinkedIn</span>
+      </div>
+      <!-- X/Twitter -->
+      <div class="relative group">
+        <a href="https://x.com/" target="_blank" class="text-black dark:text-white text-xl flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-[#23272f] hover:scale-125 scale-100 transition-transform duration-200">
+          <svg width="22" height="22" viewBox="0 0 1200 1227" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1199.97 0.5H1090.6L600.01 529.5L1090.6 1226.5H1199.97L709.38 529.5L1199.97 0.5ZM0.0299988 0.5H109.4L599.99 529.5L109.4 1226.5H0.0299988L490.62 529.5L0.0299988 0.5Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <span class="tooltip group-hover:opacity-100">X</span>
+      </div>
+      <!-- Email -->
+      <div class="relative group">
+        <a href="mailto:your@email.com" class="text-black dark:text-white text-xl flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-[#23272f] hover:scale-125 scale-100 transition-transform duration-200">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <span class="tooltip group-hover:opacity-100">Email</span>
+      </div>
+      <!-- Theme -->
+      <div class="relative group">
+        <button class="theme-toggle-btn text-black dark:text-white text-xl flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-[#23272f] hover:scale-125 scale-100 transition-transform duration-200" aria-label="Toggle Theme"></button>
+        <span class="tooltip group-hover:opacity-100">Light/Dark</span>
+      </div>
     </div>
   </div>
-
   <script>
-    // Theme toggle functionality
-    function setTheme(mode) {
-      if (mode === 'dark') {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
+  // Light/Dark mode toggle
+  function setTheme(mode) {
+    if (mode === 'dark') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+    updateThemeIcon();
+  }
+  function updateThemeIcon() {
+    const btn = document.querySelector('.theme-toggle-btn');
+    if (!btn) return;
+    if (document.documentElement.classList.contains('dark')) {
+      btn.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+      btn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+  }
+  // On load, set theme from localStorage or system
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  })();
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.querySelector('.theme-toggle-btn');
+    if (btn) {
+      btn.addEventListener('click', function() {
+        setTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+      });
       updateThemeIcon();
     }
-
-    function updateThemeIcon() {
-      const btn = document.querySelector('.theme-toggle-btn');
-      if (!btn) return;
-      if (document.documentElement.classList.contains('dark')) {
-        btn.innerHTML = '<i class="fas fa-moon"></i>';
-      } else {
-        btn.innerHTML = '<i class="fas fa-sun"></i>';
-      }
-    }
-
-    // Initialize theme
-    (function() {
-      const saved = localStorage.getItem('theme');
-      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        setTheme('dark');
-      } else {
-        setTheme('light');
-      }
-    })();
-
-    // Theme toggle click handler
-    document.addEventListener('DOMContentLoaded', function() {
-      const btn = document.querySelector('.theme-toggle-btn');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          setTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
-        });
-        updateThemeIcon();
-      }
-    });
+  });
   </script>
 </body>
 </html>
